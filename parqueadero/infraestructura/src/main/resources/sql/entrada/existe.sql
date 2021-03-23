@@ -1,0 +1,1 @@
+select count(1) from entrada where placa_vehiculo = :placaVehiculo and id_tipo_vehiculo = :tipoVehiculo and registra_salida=:registraSalida

@@ -1,0 +1,1 @@
+select count(*) from entrada where id_tipo_vehiculo =:tipoVehiculo and registra_salida='0'
