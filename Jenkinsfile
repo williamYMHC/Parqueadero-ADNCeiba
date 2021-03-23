@@ -34,11 +34,9 @@ pipeline {
          }
          stage('Compile & Unit Tests') {
              steps{
-                sh 'chmod 500 gradlew'
                 echo "------------>Clean<------------"
                 sh 'gradle --b ./parqueadero/build.gradle clean'
                 echo "------------>Unit Tests<------------"
-                sh './gradlew test'
                 sh 'gradle --b ./parqueadero/build.gradle test'
 
              }
