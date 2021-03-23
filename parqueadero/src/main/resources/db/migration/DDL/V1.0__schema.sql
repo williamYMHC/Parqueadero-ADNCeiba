@@ -23,8 +23,8 @@ create table comun_parqueadero(
  FOREIGN KEY (id_tipo_vehiculo) REFERENCES tipo_vehiculo(id)
 );
 
-insert into comun_parqueadero(id_tipo_vehiculo,capacidad_maxima) values ('1', '1');
-insert into comun_parqueadero(id_tipo_vehiculo,capacidad_maxima) values ('2', '1');
+insert into comun_parqueadero(id_tipo_vehiculo,capacidad_maxima) values ('1', '2');
+insert into comun_parqueadero(id_tipo_vehiculo,capacidad_maxima) values ('2', '2');
 
 
 

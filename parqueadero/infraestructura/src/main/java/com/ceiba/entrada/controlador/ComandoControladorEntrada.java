@@ -26,10 +26,4 @@ public class ComandoControladorEntrada {
         return manejadorCrearEntrada.ejecutar(comandoEntrada);
     }
 
-    @PostMapping("/salida")
-    @ApiOperation("Crear Salida de Vehiculo")
-    public ComandoRespuesta<Long> crearSalida(@RequestBody ComandoEntrada comandoEntrada) {
-        return manejadorCrearEntrada.ejecutar(comandoEntrada);
-    }
-
 }
