@@ -22,7 +22,7 @@ public class ServicioObtenerTarifaDia {
     public Float ejecutar(Entrada entrada) {
         String nombreTipoDia = obtenerTipoDia(entrada);
         Float tarifa = this.repositorioEntrada.obtenerTarifaDia(TipoDia.LUNES_A_VIERNES.getNombre(), entrada.getTipoVehiculo());
-        if(nombreTipoDia.equals(TipoDia.SABADOS_DOMINGOS_Y_FESTIVOS)){
+        if(nombreTipoDia.equals(TipoDia.SABADOS_DOMINGOS_Y_FESTIVOS.getNombre())){
             return (float)(tarifa+(tarifa*0.40));
         }
         return tarifa;

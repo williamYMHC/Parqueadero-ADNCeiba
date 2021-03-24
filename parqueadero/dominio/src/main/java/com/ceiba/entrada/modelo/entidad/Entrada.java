@@ -11,7 +11,7 @@ import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 @Getter
 public class Entrada {
 
-    int LONGITUD_PLACA = 7;
+    private static final int LONGITUD_PLACA = 7;
 
     private Long id;
     private Long tipoVehiculo;
