@@ -20,7 +20,7 @@ public interface RepositorioEntrada {
     boolean existe(String placa, Long tipoVehiculo, boolean registraSalida);
 
     /**
-     * Permite validar si existe una entrada dado la placa y el tipo de vehiculo
+     * Permite validar si ya un vehiculo ha salido del parqueadero
      * @param id
      * @return si existe o no
      */
@@ -33,6 +33,7 @@ public interface RepositorioEntrada {
      */
     boolean cumpleCapacidadMaxima(Long tipoVehiculo);
 
+    void registrarSalidaVehiculo(Entrada entrada);
 
-
+    Float obtenerTarifaDia(String nombreTipoDia, Long tipoVehiculo);
 }

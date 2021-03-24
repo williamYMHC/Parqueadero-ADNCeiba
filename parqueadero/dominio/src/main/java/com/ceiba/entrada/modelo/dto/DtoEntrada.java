@@ -16,6 +16,8 @@ public class DtoEntrada {
     private String placaVehiculo;
     private LocalDateTime fecha;
     private boolean registraSalida;
+    private Float tarifaDia;
+
 }
 
 

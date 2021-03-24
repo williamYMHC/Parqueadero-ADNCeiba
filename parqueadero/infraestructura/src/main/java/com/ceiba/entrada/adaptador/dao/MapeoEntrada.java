@@ -2,7 +2,6 @@ package com.ceiba.entrada.adaptador.dao;
 
 import com.ceiba.entrada.modelo.dto.DtoEntrada;
 import com.ceiba.infraestructura.jdbc.MapperResult;
-import com.ceiba.usuario.modelo.dto.DtoUsuario;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -21,7 +20,8 @@ public class MapeoEntrada implements RowMapper<DtoEntrada>, MapperResult {
         String placaVehiculo = resultSet.getString("placa_vehiculo");
         LocalDateTime fecha = extraerLocalDateTime(resultSet, "fecha");
         boolean registraSalida = resultSet.getBoolean("registra_salida");
-        return new DtoEntrada(id, tipoVehiculo, marcaVehiculo, modeloVehiculo, placaVehiculo, fecha, registraSalida);
+        Float tarifaDia = resultSet.getFloat("tarifa_dia");
+        return new DtoEntrada(id, tipoVehiculo, marcaVehiculo, modeloVehiculo, placaVehiculo, fecha, registraSalida, tarifaDia);
     }
 
 }

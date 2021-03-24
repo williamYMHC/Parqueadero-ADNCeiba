@@ -1,7 +1,6 @@
 package com.ceiba.entrada.servicio.testdatabuilder;
 
 import com.ceiba.entrada.comando.comandos.ComandoEntrada;
-import com.ceiba.usuario.comando.ComandoUsuario;
 
 import java.time.LocalDateTime;
 
@@ -14,14 +13,12 @@ public class ComandoEntradaTestDataBuilder {
     private String placaVehiculo;
     private LocalDateTime fecha;
     private boolean registraSalida;
-
     public ComandoEntradaTestDataBuilder() {
         tipoVehiculo = 1L;
         marcaVehiculo= "BMW";
         modeloVehiculo= "123";
         placaVehiculo= "JII-111";
         fecha = LocalDateTime.now();
-
     }
 
     public ComandoEntradaTestDataBuilder conTipoVehiculo(Long tipoVehiculo) {

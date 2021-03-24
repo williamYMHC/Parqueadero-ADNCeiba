@@ -7,11 +7,13 @@ import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
 import com.ceiba.entrada.modelo.entidad.Entrada;
 import com.ceiba.entrada.puerto.repositorio.RepositorioEntrada;
 import com.ceiba.entrada.servicio.testdatabuilder.EntradaTestDataBuilder;
+import com.ceiba.utils.MensajesExcepciones;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 public class ServicioCrearEntradaTest {
 
+    private static final int LONGITUD_PLACA=7;
     @Test
     public void validarLongitudPlacaIgual7Test() {
         // arrange
@@ -19,32 +21,36 @@ public class ServicioCrearEntradaTest {
         EntradaTestDataBuilder entradaTestDataBuilder = new EntradaTestDataBuilder().conPlacaVehiculo("BAS-01");
 
         // act - assert
-        BasePrueba.assertThrows(() -> entradaTestDataBuilder.build(), ExcepcionLongitudValor.class, mensajeExcepcion);
+        BasePrueba.assertThrows(() ->
+                        entradaTestDataBuilder.build(),
+                        ExcepcionLongitudValor.class,
+                        String.format(MensajesExcepciones.LA_PLACA_DEBE_TENER_UNA_LONGITUD_IGUAL_A.getMensaje(),LONGITUD_PLACA));
     }
 
     @Test
     public void validarEntradaExistenciaPreviaTest() {
         // arrange
-        String mensajeExcepcion = "Ya existe un vehiculo que registra entrada con la misma placa";
         Entrada entrada = new EntradaTestDataBuilder().build();
         RepositorioEntrada repositorioEntrada = Mockito.mock(RepositorioEntrada.class);
         Mockito.when(repositorioEntrada.existe(Mockito.anyString(),Mockito.anyLong(), Mockito.eq(false) )).thenReturn(true);
-        ServicioCrearEntrada servicioCrearEntrada = new ServicioCrearEntrada(repositorioEntrada);
+
+        ServicioObtenerTarifaDia servicioObtenerTarifaDia = new ServicioObtenerTarifaDia(repositorioEntrada);
+        ServicioCrearEntrada servicioCrearEntrada = new ServicioCrearEntrada(repositorioEntrada, servicioObtenerTarifaDia);
 
         // act - assert
-        BasePrueba.assertThrows(() -> servicioCrearEntrada.ejecutar(entrada), ExcepcionDuplicidad.class,mensajeExcepcion);
+        BasePrueba.assertThrows(() -> servicioCrearEntrada.ejecutar(entrada), ExcepcionDuplicidad.class,MensajesExcepciones.YA_EXISTE_UN_VEHICULO_QUE_REGISTRA_ENTRADA.getMensaje());
     }
 
     @Test
     public void validarCapacidadMaximaTest() {
         // arrange
-        String mensajeExcepcion = "El parqueadero se encuentra lleno en este momento";
         Entrada entrada = new EntradaTestDataBuilder().build();
         RepositorioEntrada repositorioEntrada = Mockito.mock(RepositorioEntrada.class);
         Mockito.when(repositorioEntrada.cumpleCapacidadMaxima(Mockito.anyLong())).thenReturn(false);
-        ServicioCrearEntrada servicioCrearEntrada = new ServicioCrearEntrada(repositorioEntrada);
+        ServicioObtenerTarifaDia servicioObtenerTarifaDia = new ServicioObtenerTarifaDia(repositorioEntrada);
+        ServicioCrearEntrada servicioCrearEntrada = new ServicioCrearEntrada(repositorioEntrada, servicioObtenerTarifaDia);
 
         // act - assert
-        BasePrueba.assertThrows(() -> servicioCrearEntrada.ejecutar(entrada), ExcepcionCapacidadMaxima.class,mensajeExcepcion);
+        BasePrueba.assertThrows(() -> servicioCrearEntrada.ejecutar(entrada), ExcepcionCapacidadMaxima.class,MensajesExcepciones.EL_PARQUEADERO_SE_ENCUENTRA_LLENO.getMensaje());
     }
 }

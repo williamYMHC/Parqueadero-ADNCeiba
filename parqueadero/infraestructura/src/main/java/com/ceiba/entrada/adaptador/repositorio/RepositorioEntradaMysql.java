@@ -12,23 +12,26 @@ public class RepositorioEntradaMysql implements RepositorioEntrada {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
-    @SqlStatement(namespace="entrada", value="crear")
+    @SqlStatement(namespace = "entrada", value = "crear")
     private static String sqlCrear;
 
-    @SqlStatement(namespace="entrada", value="existe")
+    @SqlStatement(namespace = "entrada", value = "existe")
     private static String sqlExiste;
 
-    @SqlStatement(namespace="entrada", value="existeSalidaPorId")
+    @SqlStatement(namespace = "entrada", value = "existeSalidaPorId")
     private static String sqlExisteSalidaPorId;
 
-    @SqlStatement(namespace="entrada", value="obtenerCapacidadMaxima")
+    @SqlStatement(namespace = "entrada", value = "obtenerCapacidadMaxima")
     private static String sqlCapacidadMaxima;
 
-    @SqlStatement(namespace="entrada", value="obtenerCantidadVehiculos")
+    @SqlStatement(namespace = "entrada", value = "obtenerCantidadVehiculos")
     private static String sqlcantidadActualVehiculos;
 
+    @SqlStatement(namespace = "entrada", value = "registrarSalidaVehiculo")
+    private static String sqlRegistrarSalidaVehiculo;
 
-
+    @SqlStatement(namespace = "entrada", value = "obtenerTarifaDia")
+    private static String sqlObtenerTarifaDia;
     public RepositorioEntradaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -62,4 +65,18 @@ public class RepositorioEntradaMysql implements RepositorioEntrada {
         Integer cantidadActual = this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlcantidadActualVehiculos,paramSource, Integer.class);
         return (cantidadActual+1)<=capacidadMaxima;
     }
+
+    @Override
+    public void registrarSalidaVehiculo(Entrada entrada) {
+        this.customNamedParameterJdbcTemplate.actualizar(sqlRegistrarSalidaVehiculo, entrada.getId());
+    }
+
+    @Override
+    public Float obtenerTarifaDia(String nombreTipoDia, Long tipoVehiculo) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("nombreTipoDia", nombreTipoDia);
+        paramSource.addValue("tipoVehiculo", tipoVehiculo);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlObtenerTarifaDia,paramSource, Float.class);
+    }
+
 }

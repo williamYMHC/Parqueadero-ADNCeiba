@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class FabricaEntrada {
 
     public Entrada crear(ComandoEntrada comandoEntrada) {
-        return new Entrada(
+        Entrada entrada = new Entrada(
                 comandoEntrada.getId(),
                 comandoEntrada.getTipoVehiculo(),
                 comandoEntrada.getMarcaVehiculo(),
@@ -16,6 +16,7 @@ public class FabricaEntrada {
                 comandoEntrada.getPlacaVehiculo(),
                 comandoEntrada.isRegistraSalida()
                 );
+        return entrada;
     }
 
 }

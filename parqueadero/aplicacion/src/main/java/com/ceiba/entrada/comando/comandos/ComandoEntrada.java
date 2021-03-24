@@ -20,4 +20,5 @@ public class ComandoEntrada {
     private String placaVehiculo;
     private LocalDateTime fecha;
     private boolean registraSalida;
+
 }

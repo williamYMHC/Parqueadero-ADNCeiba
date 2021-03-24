@@ -1,2 +1,2 @@
-insert into entrada (id_tipo_vehiculo, marca_vehiculo, modelo_vehiculo, placa_vehiculo, fecha, registra_salida)
-values (:tipoVehiculo, :marcaVehiculo, :modeloVehiculo, :placaVehiculo, :fecha, :registraSalida)
+insert into salida (id_entrada, valor_tarifa, fecha)
+values (:idEntrada, :valorTotal, :fechaSalida)

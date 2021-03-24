@@ -2,6 +2,8 @@ package com.ceiba.entrada.servicio.testdatabuilder;
 
 import com.ceiba.entrada.modelo.entidad.Entrada;
 
+import java.time.LocalDateTime;
+
 public class EntradaTestDataBuilder {
 
     private static final Long ID=null;
@@ -10,6 +12,7 @@ public class EntradaTestDataBuilder {
     private static final String MODELO_VEHICULO="123";
     private static final String PLACA_VEHICULO="HDM-924";
     private static final boolean REGISTRA_SALIDA=false;
+    private static final Float TARIFA_DIA=(float)1000.0;
 
     private Long id;
     private Long tipoVehiculo;
@@ -17,6 +20,8 @@ public class EntradaTestDataBuilder {
     private String modeloVehiculo;
     private String placaVehiculo;
     private boolean registraSalida;
+    private LocalDateTime fecha;
+    private Float tarifaDia;
 
     public EntradaTestDataBuilder(){
         this.id=ID;
@@ -25,6 +30,8 @@ public class EntradaTestDataBuilder {
         this.modeloVehiculo=MODELO_VEHICULO;
         this.placaVehiculo=PLACA_VEHICULO;
         this.registraSalida=REGISTRA_SALIDA;
+        this.fecha= LocalDateTime.now();
+        this.tarifaDia = TARIFA_DIA;
     }
 
     public EntradaTestDataBuilder conTipoVehiculo(Long tipoVehiculo) {
@@ -52,8 +59,21 @@ public class EntradaTestDataBuilder {
         return this;
     }
 
+    public EntradaTestDataBuilder conFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+        return this;
+    }
+
+    public EntradaTestDataBuilder conTarifaDia(Float tarifaDia) {
+        this.tarifaDia = tarifaDia;
+        return this;
+    }
+
     public Entrada build() {
-        return new Entrada(id,tipoVehiculo, marcaVehiculo,modeloVehiculo,placaVehiculo,registraSalida);
+        Entrada entrada = new Entrada(id,tipoVehiculo, marcaVehiculo,modeloVehiculo,placaVehiculo,registraSalida);
+        entrada.setFecha(fecha);
+        entrada.setTarifaDia(tarifaDia);
+        return entrada;
     }
 
 

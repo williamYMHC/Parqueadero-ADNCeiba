@@ -13,14 +13,16 @@ public class ManejadorCrearSalida implements ManejadorComandoRespuesta<ComandoEn
 
     private final FabricaSalida fabricaSalida;
     private final ServicioCrearSalida servicioCrearSalida;
+    private final ManejadorObtenerEntrada manejadorObtenerEntrada;
 
-    public ManejadorCrearSalida(FabricaSalida fabricaSalida, ServicioCrearSalida servicioCrearSalida) {
+    public ManejadorCrearSalida(FabricaSalida fabricaSalida, ServicioCrearSalida servicioCrearSalida, ManejadorObtenerEntrada manejadorObtenerEntrada) {
         this.fabricaSalida = fabricaSalida;
         this.servicioCrearSalida = servicioCrearSalida;
+        this.manejadorObtenerEntrada = manejadorObtenerEntrada;
     }
 
-    public ComandoRespuesta<Long> ejecutar(ComandoEntrada fabricaEntrada) {
-        Salida salida = this.fabricaSalida.crear(fabricaEntrada);
+    public ComandoRespuesta<Long> ejecutar(ComandoEntrada comandoEntrada) {
+        Salida salida = this.fabricaSalida.crear(comandoEntrada, manejadorObtenerEntrada);
         return new ComandoRespuesta<>(this.servicioCrearSalida.ejecutar(salida));
     }
 }

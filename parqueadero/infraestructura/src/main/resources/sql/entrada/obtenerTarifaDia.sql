@@ -1,0 +1,1 @@
+select tarifa from comun_tarifas where id_tipo_vehiculo =:tipoVehiculo and tipo_dia=:nombreTipoDia
