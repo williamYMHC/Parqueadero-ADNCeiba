@@ -1,0 +1,22 @@
+package com.ceiba.entrada.modelo.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+import java.time.LocalDateTime;
+
+@Getter
+@AllArgsConstructor
+public class DtoHistorialSalida {
+
+    private Long id;
+    private Long tipoVehiculo;
+    private String marcaVehiculo;
+    private String modeloVehiculo;
+    private String placaVehiculo;
+    private LocalDateTime fecha;
+    private boolean registraSalida;
+    private Float tarifaDia;
+    private LocalDateTime fechaSalida;
+    private Float valorTarifa;
+}

@@ -19,17 +19,16 @@ public class ServicioObtenerTarifaDia {
         this.repositorioEntrada = repositorioEntrada;
     }
 
-    public Float ejecutar(Entrada entrada) {
-        String nombreTipoDia = obtenerTipoDia(entrada);
-        Float tarifa = this.repositorioEntrada.obtenerTarifaDia(TipoDia.LUNES_A_VIERNES.getNombre(), entrada.getTipoVehiculo());
+    public Float ejecutar(Long idTipoVehiculo, LocalDateTime fecha) {
+        String nombreTipoDia = obtenerTipoDia(fecha);
+        Float tarifa = this.repositorioEntrada.obtenerTarifaDia(TipoDia.LUNES_A_VIERNES.getNombre(), idTipoVehiculo);
         if(nombreTipoDia.equals(TipoDia.SABADOS_DOMINGOS_Y_FESTIVOS.getNombre())){
             return (float)(tarifa+(tarifa*0.40));
         }
         return tarifa;
     }
 
-    public String obtenerTipoDia(Entrada entrada) {
-        LocalDateTime fecha = entrada.getFecha();
+    public String obtenerTipoDia(LocalDateTime fecha) {
         HolidayUtil holidayUtil = new HolidayUtil(LocalDate.now().getYear());
         Set<DayOfWeek> findeSemana = EnumSet.of( DayOfWeek.SATURDAY , DayOfWeek.SUNDAY );
         if(holidayUtil.isHoliday(fecha.getMonthValue()-1, fecha.getDayOfMonth())){

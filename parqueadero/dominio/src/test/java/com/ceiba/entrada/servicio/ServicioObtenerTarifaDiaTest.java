@@ -23,7 +23,7 @@ public class ServicioObtenerTarifaDiaTest {
 
         //act
         ServicioObtenerTarifaDia servicioObtenerTarifaDia = new ServicioObtenerTarifaDia(repositorioEntrada);
-        String tipoDia = servicioObtenerTarifaDia.obtenerTipoDia(entrada);
+        String tipoDia = servicioObtenerTarifaDia.obtenerTipoDia(entrada.getFecha());
 
         // assert
         Assertions.assertEquals(TipoDia.SABADOS_DOMINGOS_Y_FESTIVOS.getNombre(), tipoDia);
@@ -37,7 +37,7 @@ public class ServicioObtenerTarifaDiaTest {
 
         //act
         ServicioObtenerTarifaDia servicioObtenerTarifaDia = new ServicioObtenerTarifaDia(repositorioEntrada);
-        String tipoDia = servicioObtenerTarifaDia.obtenerTipoDia(entrada);
+        String tipoDia = servicioObtenerTarifaDia.obtenerTipoDia(entrada.getFecha());
 
         // assert
         Assertions.assertEquals(TipoDia.SABADOS_DOMINGOS_Y_FESTIVOS.getNombre(), tipoDia);
@@ -51,7 +51,7 @@ public class ServicioObtenerTarifaDiaTest {
 
         //act
         ServicioObtenerTarifaDia servicioObtenerTarifaDia = new ServicioObtenerTarifaDia(repositorioEntrada);
-        String tipoDia = servicioObtenerTarifaDia.obtenerTipoDia(entrada);
+        String tipoDia = servicioObtenerTarifaDia.obtenerTipoDia(entrada.getFecha());
 
         // assert
         Assertions.assertEquals(TipoDia.LUNES_A_VIERNES.getNombre(), tipoDia);

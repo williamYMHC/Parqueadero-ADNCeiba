@@ -1,5 +1,6 @@
 package com.ceiba.entrada.adaptador.dao;
 
+import com.ceiba.entrada.adaptador.dao.mapeo.MapeoEntrada;
 import com.ceiba.entrada.modelo.dto.DtoEntrada;
 import com.ceiba.entrada.puerto.dao.DaoEntrada;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;

@@ -1,4 +1,4 @@
-package com.ceiba.entrada.adaptador.dao;
+package com.ceiba.entrada.adaptador.dao.mapeo;
 
 import com.ceiba.entrada.modelo.dto.DtoEntrada;
 import com.ceiba.infraestructura.jdbc.MapperResult;
