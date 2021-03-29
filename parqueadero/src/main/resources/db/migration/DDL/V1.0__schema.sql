@@ -29,9 +29,7 @@ create table comun_tarifas(
 );
 
 insert into comun_tarifas(id_tipo_vehiculo, tipo_dia, tarifa) values ('1', 'LUNESAVIERNES', 1000);
---insert into comun_tarifas(id_tipo_vehiculo, tipo_dia, tarifa) values ('1','SABADOSDOMINGOSYFESTIVOS');
 insert into comun_tarifas(id_tipo_vehiculo, tipo_dia, tarifa) values ('2','LUNESAVIERNES', 600);
---insert into comun_tarifas(id_tipo_vehiculo, tipo_dia, tarifa) values ('2','SABADOSDOMINGOSYFESTIVOS');
 
 create table entrada (
  id int(11) not null auto_increment,

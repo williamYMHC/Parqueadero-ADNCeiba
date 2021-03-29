@@ -45,7 +45,7 @@ public class ComandoControladorEntradaTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(entrada)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 1}"));
+                .andExpect(content().json("{'valor': 2}"));
     }
 
     @Test
@@ -56,7 +56,7 @@ public class ComandoControladorEntradaTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(entrada)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 1}"));
+                .andExpect(content().json("{'valor': 2}"));
 
         // act - assert
         mocMvc.perform(post("/entradas")
@@ -73,14 +73,14 @@ public class ComandoControladorEntradaTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(entrada)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 1}"));
+                .andExpect(content().json("{'valor': 2}"));
 
         entrada = new ComandoEntradaTestDataBuilder().conPlacaVehiculo("OTR-PL1").build();
         mocMvc.perform(post("/entradas")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(entrada)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 2}"));
+                .andExpect(content().json("{'valor': 3}"));
 
         entrada = new ComandoEntradaTestDataBuilder().conPlacaVehiculo("OTR-PL2").build();
         // act - assert

@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes= ApplicationMock.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
-@WebMvcTest(ComandoControladorEntrada.class)
+@WebMvcTest(ComandoControladorSalida.class)
 public class ComandoControladorSalidaTest {
 
     @Autowired
@@ -41,22 +41,22 @@ public class ComandoControladorSalidaTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoEntrada)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 1}"));
-        comandoEntrada.setId(1L);
+                .andExpect(content().json("{'valor': 2}"));
+        comandoEntrada.setId(2L);
 
         // act - assert
         mocMvc.perform(post("/salidas")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoEntrada)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 1}"));
+                .andExpect(content().json("{'valor': 2}"));
     }
 
     @Test
     public void crearSalidaInvalidaTest() throws Exception{
         // arrange
         comandoEntrada = new ComandoEntradaTestDataBuilder().conPlacaVehiculo("PLC-VAL").build();
-        comandoEntrada.setId(1L);
+        comandoEntrada.setId(2L);
 
         // act - assert
         mocMvc.perform(post("/salidas")
