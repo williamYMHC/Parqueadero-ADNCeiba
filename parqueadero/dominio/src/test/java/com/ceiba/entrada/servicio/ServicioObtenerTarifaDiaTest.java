@@ -20,13 +20,15 @@ public class ServicioObtenerTarifaDiaTest {
         // arrange
         entrada = new EntradaTestDataBuilder().conFecha(LocalDateTime.of(2021, 3, 22,5, 0)).build();
         RepositorioEntrada repositorioEntrada = Mockito.mock(RepositorioEntrada.class);
+        ServicioObtenerTarifaDia servicioObtenerTarifaDia = new ServicioObtenerTarifaDia(repositorioEntrada);
+
+        Mockito.when(repositorioEntrada.obtenerTarifaDia(TipoDia.LUNES_A_VIERNES.getNombre(), 1L)).thenReturn(1000.0F);
 
         //act
-        ServicioObtenerTarifaDia servicioObtenerTarifaDia = new ServicioObtenerTarifaDia(repositorioEntrada);
-        String tipoDia = servicioObtenerTarifaDia.obtenerTipoDia(entrada.getFecha());
+        Float tarifa = servicioObtenerTarifaDia.ejecutar(1L, entrada.getFecha());
 
         // assert
-        Assertions.assertEquals(TipoDia.SABADOS_DOMINGOS_Y_FESTIVOS.getNombre(), tipoDia);
+        Assertions.assertEquals(java.util.Optional.ofNullable(1400F), java.util.Optional.ofNullable(tarifa));
     }
 
     @Test
@@ -34,13 +36,14 @@ public class ServicioObtenerTarifaDiaTest {
         // arrange
         entrada = new EntradaTestDataBuilder().conFecha(LocalDateTime.of(2021, 3, 20,13, 0)).build();
         RepositorioEntrada repositorioEntrada = Mockito.mock(RepositorioEntrada.class);
+        ServicioObtenerTarifaDia servicioObtenerTarifaDia = new ServicioObtenerTarifaDia(repositorioEntrada);
+        Mockito.when(repositorioEntrada.obtenerTarifaDia(TipoDia.LUNES_A_VIERNES.getNombre(), 1L)).thenReturn(1000.0F);
 
         //act
-        ServicioObtenerTarifaDia servicioObtenerTarifaDia = new ServicioObtenerTarifaDia(repositorioEntrada);
-        String tipoDia = servicioObtenerTarifaDia.obtenerTipoDia(entrada.getFecha());
+        Float tarifa = servicioObtenerTarifaDia.ejecutar(1L, entrada.getFecha());
 
         // assert
-        Assertions.assertEquals(TipoDia.SABADOS_DOMINGOS_Y_FESTIVOS.getNombre(), tipoDia);
+        Assertions.assertEquals(java.util.Optional.ofNullable(1400F), java.util.Optional.ofNullable(tarifa));
     }
 
     @Test
@@ -48,12 +51,13 @@ public class ServicioObtenerTarifaDiaTest {
         // arrange
         entrada = new EntradaTestDataBuilder().conFecha(LocalDateTime.of(2021, 3, 24,18, 0)).build();
         RepositorioEntrada repositorioEntrada = Mockito.mock(RepositorioEntrada.class);
+        ServicioObtenerTarifaDia servicioObtenerTarifaDia = new ServicioObtenerTarifaDia(repositorioEntrada);
+        Mockito.when(repositorioEntrada.obtenerTarifaDia(TipoDia.LUNES_A_VIERNES.getNombre(), 1L)).thenReturn(1000.0F);
 
         //act
-        ServicioObtenerTarifaDia servicioObtenerTarifaDia = new ServicioObtenerTarifaDia(repositorioEntrada);
-        String tipoDia = servicioObtenerTarifaDia.obtenerTipoDia(entrada.getFecha());
+        Float tarifa = servicioObtenerTarifaDia.ejecutar(1L, entrada.getFecha());
 
         // assert
-        Assertions.assertEquals(TipoDia.LUNES_A_VIERNES.getNombre(), tipoDia);
+        Assertions.assertEquals(java.util.Optional.ofNullable(1000F), java.util.Optional.ofNullable(tarifa));
     }
 }

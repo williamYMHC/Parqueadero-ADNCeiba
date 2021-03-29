@@ -1,7 +1,6 @@
 package com.ceiba.entrada.servicio;
 
 import com.ceiba.dominio.utils.HolidayUtil;
-import com.ceiba.entrada.modelo.entidad.Entrada;
 import com.ceiba.entrada.modelo.enums.TipoDia;
 import com.ceiba.entrada.puerto.repositorio.RepositorioEntrada;
 

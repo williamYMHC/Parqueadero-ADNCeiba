@@ -1,6 +1,5 @@
 package com.ceiba.entrada.adaptador.dao.mapeo;
 
-import com.ceiba.entrada.modelo.dto.DtoEntrada;
 import com.ceiba.entrada.modelo.dto.DtoHistorialSalida;
 import com.ceiba.infraestructura.jdbc.MapperResult;
 import org.springframework.jdbc.core.RowMapper;

@@ -1,8 +1,6 @@
 package com.ceiba.entrada.controlador;
 
-import com.ceiba.entrada.consulta.ManejadorListarEntradas;
 import com.ceiba.entrada.consulta.ManejadorListarHistorialSalida;
-import com.ceiba.entrada.modelo.dto.DtoEntrada;
 import com.ceiba.entrada.modelo.dto.DtoHistorialSalida;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

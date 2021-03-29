@@ -1,6 +1,5 @@
 package com.ceiba.entrada.consulta;
 
-import com.ceiba.entrada.modelo.dto.DtoEntrada;
 import com.ceiba.entrada.modelo.dto.DtoHistorialSalida;
 import com.ceiba.entrada.puerto.dao.DaoSalida;
 import org.springframework.stereotype.Component;

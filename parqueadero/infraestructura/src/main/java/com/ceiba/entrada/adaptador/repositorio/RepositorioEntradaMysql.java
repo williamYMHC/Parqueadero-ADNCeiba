@@ -36,6 +36,11 @@ public class RepositorioEntradaMysql implements RepositorioEntrada {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
 
+    private MapSqlParameterSource instanciarparamSourceWithTipoVehiculo(Long tipoVehiculo){
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("tipoVehiculo", tipoVehiculo);
+        return paramSource;
+    }
     @Override
     public Long crear(Entrada entrada) {
         return this.customNamedParameterJdbcTemplate.crear(entrada, sqlCrear);
@@ -43,9 +48,8 @@ public class RepositorioEntradaMysql implements RepositorioEntrada {
 
     @Override
     public boolean existe(String placaVehiculo, Long tipoVehiculo, boolean registraSalida) {
-        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        MapSqlParameterSource paramSource =instanciarparamSourceWithTipoVehiculo(tipoVehiculo);
         paramSource.addValue("placaVehiculo", placaVehiculo);
-        paramSource.addValue("tipoVehiculo", tipoVehiculo);
         paramSource.addValue("registraSalida", registraSalida);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
     }
@@ -59,8 +63,7 @@ public class RepositorioEntradaMysql implements RepositorioEntrada {
 
     @Override
     public boolean cumpleCapacidadMaxima(Long tipoVehiculo) {
-        MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("tipoVehiculo", tipoVehiculo);
+        MapSqlParameterSource paramSource =instanciarparamSourceWithTipoVehiculo(tipoVehiculo);
         Integer capacidadMaxima = this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlCapacidadMaxima,paramSource, Integer.class);
         Integer cantidadActual = this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlcantidadActualVehiculos,paramSource, Integer.class);
         return (cantidadActual+1)<=capacidadMaxima;
@@ -73,9 +76,8 @@ public class RepositorioEntradaMysql implements RepositorioEntrada {
 
     @Override
     public Float obtenerTarifaDia(String nombreTipoDia, Long tipoVehiculo) {
-        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        MapSqlParameterSource paramSource =instanciarparamSourceWithTipoVehiculo(tipoVehiculo);
         paramSource.addValue("nombreTipoDia", nombreTipoDia);
-        paramSource.addValue("tipoVehiculo", tipoVehiculo);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlObtenerTarifaDia,paramSource, Float.class);
     }
 

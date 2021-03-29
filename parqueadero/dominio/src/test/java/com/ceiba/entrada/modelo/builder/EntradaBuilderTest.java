@@ -5,7 +5,6 @@ import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
 import com.ceiba.entrada.modelo.dto.DtoEntrada;
 import com.ceiba.entrada.modelo.entidad.Entrada;
-import com.ceiba.entrada.modelo.enums.TipoDia;
 import com.ceiba.utils.MensajesExcepciones;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;

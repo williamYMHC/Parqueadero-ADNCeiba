@@ -1,6 +1,5 @@
 package com.ceiba.entrada.adaptador.dao;
 
-import com.ceiba.entrada.adaptador.dao.mapeo.MapeoEntrada;
 import com.ceiba.entrada.adaptador.dao.mapeo.MapeoHistorialSalida;
 import com.ceiba.entrada.modelo.dto.DtoHistorialSalida;
 import com.ceiba.entrada.puerto.dao.DaoSalida;
