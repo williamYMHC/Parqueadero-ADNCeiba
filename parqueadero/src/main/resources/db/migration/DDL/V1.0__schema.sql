@@ -15,8 +15,8 @@ create table comun_parqueadero(
  FOREIGN KEY (id_tipo_vehiculo) REFERENCES tipo_vehiculo(id)
 );
 
-insert into comun_parqueadero(id_tipo_vehiculo,capacidad_maxima) values ('1', '2');
-insert into comun_parqueadero(id_tipo_vehiculo,capacidad_maxima) values ('2', '2');
+insert into comun_parqueadero(id_tipo_vehiculo,capacidad_maxima) values ('1', '200');
+insert into comun_parqueadero(id_tipo_vehiculo,capacidad_maxima) values ('2', '200');
 
 create table comun_tarifas(
  id int(11) not null auto_increment,
@@ -50,5 +50,6 @@ create table salida (
  valor_tarifa float not null,
  fecha datetime not null,
  primary key (id),
- FOREIGN KEY (id_entrada) REFERENCES entrada(id)
+ FOREIGN KEY (id_entrada) REFERENCES entrada(id),
+ CONSTRAINT UN_salida UNIQUE (id_entrada)
 );

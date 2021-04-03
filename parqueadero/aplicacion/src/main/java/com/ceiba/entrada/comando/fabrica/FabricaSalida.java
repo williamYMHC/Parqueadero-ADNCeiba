@@ -14,6 +14,7 @@ public class FabricaSalida {
     public Salida crear(ComandoEntrada comandoEntrada, ManejadorObtenerEntrada manejadorObtenerEntrada) {
         DtoEntrada dtoEntrada = manejadorObtenerEntrada.ejecutar(comandoEntrada.getId());
         Entrada entrada = EntradaBuilder.convertirAEntidad(dtoEntrada);
+        entrada.setTarifaDia(dtoEntrada.getTarifaDia());
         return new Salida(
                 null,
                 entrada

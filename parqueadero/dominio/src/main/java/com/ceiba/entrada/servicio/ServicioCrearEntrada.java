@@ -19,7 +19,6 @@ public class ServicioCrearEntrada {
     public Long ejecutar(Entrada entrada) {
         validarEntradaPrevia(entrada);
         validarCapacidadMaxima(entrada);
-
         entrada.setTarifaDia(servicioObtenerTarifaDia.ejecutar(entrada.getTipoVehiculo(), entrada.getFecha()));
         return this.repositorioEntrada.crear(entrada);
     }
